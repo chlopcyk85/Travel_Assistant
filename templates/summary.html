@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Asystent podróży">
+    <meta name="author" content="Marcin Molenda">
+    <title>Summary Travel Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='img/background_ta.jpg') }}');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            margin-top: 7px;
+            margin-bottom: 0px;
+            flex-grow: 1;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 25px;
+        }
+
+        h3 {
+            font-size: 22px;
+        }
+
+        h4 {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .summary-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Summary Travel Assistant</h1>
+        <h2 style="font-size: 10px; font-style: italic;">created by Marcin Molenda</h2>
+
+        <div class="summary-container">
+            <h4>Podsumowanie podróży z {{origin.capitalize()}} do {{destination.capitalize()}}</h4>
+
+            <p><strong>Odległość:</strong> {{ travel_distance }} km</p>
+
+            <h3>Średnie ceny paliw w Polsce na dzień {{ today_date }}</h3>
+            <ul>
+                <li>Benzyna E95: {{ fuel_95 }} zł/l.</li>
+                <li>Benzyna E98: {{ fuel_98 }} zł/l.</li>
+                <li>Paliwo ON: {{ fuel_on }} zł/l.</li>
+                <li>LPG: {{ fuel_lpg }} zł/l.</li>
+            </ul>
+
+            <p><strong>Koszt podróży wynosi:</strong> {{ travel_cost }} zł</p>
+
+            <h3>Aktualne warunki pogodowe w miejscu docelowym:</h3>
+            <p>{{ weather_info }}</p>
+
+            <h3>Opis miejsca docelowego:</h3>
+            <p>{{ destination_description }}</p>
+        </div>
+    </div>
+</body>
+</html>

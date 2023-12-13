@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Assistant</title>
+    <meta name="author" content="Marcin Molenda">
+    <meta name="description" content="Asystent podróży">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='img/background_ta.jpg') }}');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #000;
+            font-size: 20px;
+        }
+
+        .container {
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        h3 {
+            font-size: 15px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        form label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        img.radio-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .radio-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="radio"] {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #494770;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Travel Assistant</h1>
+        <h2>created by Marcin Molenda</h2>
+
+        <form id="travelForm" action="{{ url_for('summary') }}" method="post">
+            <label for="startLocation">Skąd rozpoczynasz swoją podróż?</label>
+            <input type="text" id="startLocation" name="startLocation" required>
+
+            <label for="stopLocation">Podaj cel swojej podróży</label>
+            <input type="text" id="stopLocation" name="DestLocation" required>
+
+            <label for="petrol">Średnie spalanie paliwa na 100 km?</label>
+            <input type="text" id="petrol" name="petrol" required>
+
+            <label>Wybierz rodzaj paliwa:</label>
+
+            <div class="radio-container">
+                <label for="e95">E95</label>
+                <img src="{{ url_for('static', filename='img/e95.jpg') }}" alt="E95 " class="radio-icon">
+                <input type="radio" id="e95" name="paliwo" value="1">
+
+                <label for="e98">E98</label>
+                <img src="{{ url_for('static', filename='img/e98.jpg') }}" alt="E98 " class="radio-icon">
+                <input type="radio" id="e98" name="paliwo" value="2">
+
+                <label for="ropaON">Ropa ON</label>
+                <img src="{{ url_for('static', filename='img/ON.jpg') }}" alt="Ropa ON " class="radio-icon">
+                <input type="radio" id="ropaON" name="paliwo" value="3">
+
+                <label for="lpg">LPG</label>
+                <img src="{{ url_for('static', filename='img/LPG.jpg') }}" alt="LPG " class="radio-icon">
+                <input type="radio" id="lpg" name="paliwo" value="4">
+            </div>
+
+            <button type="submit">Rozpocznij podróż</button>
+                    <h3>(wypełnij, naciśnij i odczekaj parę chwil...)</h3>
+        </form>
+    </div>
+</body>
+</html>
