@@ -109,8 +109,8 @@ class TravelAssistant:
             destination_description = response_json['choices'][0]['message']['content']
             return destination_description
         else:
-            print(f"Błąd pobrania informacji o miejscu docelowym")
-            return None
+            return " # Błąd pobrania informacji o miejscu docelowym, sprawdź połączenie z internetem lub klucze API #"
+
 
     def travel_data(self):
         try:
