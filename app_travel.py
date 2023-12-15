@@ -30,7 +30,10 @@ def index():
         weather_info = assistant.get_current_weather(destination)
         today_date = datetime.now().date()
         fuel_price = assistant.petrol(fuel_type)
-        travel_distance = assistant.travel_data()
+        try:
+            travel_distance = assistant.travel_data()
+        except IndexError:
+            return " # Błąd pobrania informacji o miejscu docelowym, sprawdź połączenie z internetem lub klucze API #"
 
         try:
             travel_cost = assistant.cost(travel_distance, float(consumption), float(fuel_price))
@@ -78,7 +81,10 @@ def summary():
         weather_info = assistant.get_current_weather(destination)
         today_date = datetime.now().date()
         fuel_price = assistant.petrol(fuel_type)
-        travel_distance = assistant.travel_data()
+        try:
+            travel_distance = assistant.travel_data()
+        except IndexError:
+            return " # Błąd pobrania informacji o miejscu docelowym, sprawdź połączenie z internetem lub klucze API #"
         try:
             travel_cost = assistant.cost(travel_distance, float(consumption), float(fuel_price))
         except ValueError:
